@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resume_url: MyString
+  experience_level: MyString
+  work_authorization: MyString
+  preferred_role: MyString
+  salary_min: 1
+  salary_max: 1
+  open_to_remote: false
+  user: one
+
+two:
+  resume_url: MyString
+  experience_level: MyString
+  work_authorization: MyString
+  preferred_role: MyString
+  salary_min: 1
+  salary_max: 1
+  open_to_remote: false
+  user: two

@@ -1,0 +1,66 @@
+<div class="job-form-container">
+  <h1>Post a Job</h1>
+
+  <%= form_with model: @job, local: true do |f| %>
+    <%= render "devise/shared/error_messages", resource: @job %>
+
+    <div class="field">
+      <p><%= f.label :title, "Job Title" %></p>
+      <p><%= f.text_field :title, placeholder: "e.g. Senior Frontend Developer" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :company %></p>
+      <p><%= f.text_field :company, placeholder: "Your company name" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :description %></p>
+      <p><%= f.text_area :description, rows: 10, placeholder: "Describe the role, responsibilities, and what you're looking for" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :location %></p>
+      <p><%= f.text_field :location, placeholder: "City, State or Country" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :remote, "Remote Position?" %></p>
+      <p><%= f.check_box :remote %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :experience_level %></p>
+      <p><%= f.select :experience_level, [["Entry Level", "entry"], ["Mid Level", "mid"], ["Senior", "senior"], ["Lead", "lead"]] %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :work_authorization %></p>
+      <p><%= f.select :work_authorization, [["Any", "any"], ["Citizens Only", "citizens_only"], ["Visa Sponsored", "visa_sponsored"]] %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :language, "Posting Language" %></p>
+      <p><%= f.select :language, [["English", "en"], ["Spanish", "es"], ["French", "fr"], ["German", "de"], ["Portuguese", "pt"]] %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :salary_min, "Minimum Salary" %></p>
+      <p><%= f.number_field :salary_min, placeholder: "e.g. 60000" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :salary_max, "Maximum Salary" %></p>
+      <p><%= f.number_field :salary_max, placeholder: "e.g. 90000" %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :expires_at, "Posting Expires On" %></p>
+      <p><%= f.date_field :expires_at %></p>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit for Verification", class: "btn-submit" %>
+    </div>
+  <% end %>
+</div>

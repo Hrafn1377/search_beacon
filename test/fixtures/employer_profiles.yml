@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_name: MyString
+  domain: MyString
+  website: MyString
+  verified: false
+  verification_score: 1
+  user: one
+
+two:
+  company_name: MyString
+  domain: MyString
+  website: MyString
+  verified: false
+  verification_score: 1
+  user: two

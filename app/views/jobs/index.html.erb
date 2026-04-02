@@ -1,0 +1,43 @@
+<div class="jobs-container">
+  <div class="jobs-header">
+    <h1>Available Jobs</h1>
+    <% if current_user.employer? %>
+      <%= link_to "Post a Job", new_job_path, class: "btn-post" %>
+    <% end %>
+  </div>
+
+  <% if @jobs.any? %>
+    <div class="jobs-list">
+      <% @jobs.each do |job| %>
+        <div class="job-card" data-job-id="<%= job.id %>">
+          <div class="job-card-header">
+            <h2><%= link_to job.title, job_path(job) %></h2>
+            <span class="company"><%= job.company %></span>
+          </div>
+
+          <div class="job-meta">
+            <span class="location"><%= job.remote? ? "Remote" : job.location %></span>
+            <span class="experience"><%= job.experience_level.capitalize %></span>
+            <% if job.salary_min? || job.salary_max? %>
+              <span class="salary">
+                $<%= job.salary_min %> - $<%= job.salary_max %>
+              </span>
+            <% end %>
+            <span class="work-auth"><%= job.work_authorization %></span>
+          </div>
+
+          <div class="job-card-footer">
+            <span class="posted-at">Posted <%= time_ago_in_words(job.created_at) %> ago</span>
+            <% if job.verified? %>
+              <span class="verified-badge">✓ Verified</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="no-jobs">
+      <p>No verified jobs available right now. Check back soon.</p>
+    </div>
+  <% end %>
+</div>

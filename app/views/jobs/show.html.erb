@@ -1,0 +1,46 @@
+<div class="job-show-container">
+  <div class="job-show-header">
+    <h1><%= @job.title %></h1>
+    <span class="company"><%= @job.company %></span>
+
+    <div class="job-meta">
+      <span class="location"><%= @job.remote? ? "Remote" : @job.location %></span>
+      <span class="experience"><%= @job.experience_level.capitalize %></span>
+      <% if @job.salary_min? || @job.salary_max? %>
+        <span class="salary">$<%= @job.salary_min %> - $<%= @job.salary_max %></span>
+      <% end %>
+      <span class="work-auth"><%= @job.work_authorization %></span>
+      <span class="language">Posted in: <%= @job.language.upcase %></span>
+    </div>
+
+    <div class="trust-signals">
+      <% if @job.verified? %>
+        <span class="verified-badge">✓ Verified Posting</span>
+      <% end %>
+      <% if @job.suspicious? %>
+        <span class="flag-badge">⚠ Flagged for Review</span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="job-show-body">
+    <h2>About this role</h2>
+    <div class="description"><%= simple_format(@job.description) %></div>
+  </div>
+
+  <div class="job-show-footer">
+    <span class="posted-at">Posted <%= time_ago_in_words(@job.created_at) %> ago</span>
+    <% if @job.expires_at? %>
+      <span class="expires-at">Expires <%= time_ago_in_words(@job.expires_at) %></span>
+    <% end %>
+
+    <% if current_user.employer? && @job.user == current_user %>
+      <%= link_to "Edit", edit_job_path(@job), class: "btn-edit" %>
+    <% end %>
+
+    <% if current_user.seeker? %>
+      <%= link_to "Apply", "#", class: "btn-apply" %>
+      <%= link_to "Save", "#", class: "btn-save" %>
+    <% end %>
+  </div>
+</div>
