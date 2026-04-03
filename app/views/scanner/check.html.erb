@@ -1,0 +1,41 @@
+<div class="scanner-container">
+  <h1>Scan Results</h1>
+  <p class="scanned-url">Scanned: <strong><%= @url %></strong></p>
+
+  <% if @result["error"] %>
+    <div class="alert"><%= @result["error"] %></div>
+    <%= link_to "Try another URL", scanner_path %>
+  <% else %>
+    <div class="result-card">
+      <h2>Risk Score: <%= @result["score"] %></h2>
+
+      <div class="verdict <%= @result['verdict'] %>">
+        <% if @result["verdict"] == "clean" %>
+          ✓ This posting looks clean.
+        <% else %>
+          ⚠ This posting has red flags. Proceed with caution.
+        <% end %>
+      </div>
+
+      <% if @result["flags"].any? %>
+        <h3>Flags Found:</h3>
+        <ul class="flags-list">
+          <% @result["flags"].each do |flag| %>
+            <li>
+              <strong>[<%= flag["category"] %>]</strong> — weight: <%= flag["weight"] %>
+              <ul>
+                <% flag["matches"].each do |match| %>
+                  <li><%= match %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No specific red flags detected.</p>
+      <% end %>
+    </div>
+
+    <%= link_to "Scan another job", scanner_path, class: "btn-back" %>
+  <% end %>
+</div>

@@ -5,5 +5,8 @@ Rails.application.routes.draw do
 
   resources :jobs, only: [:index, :show, :new, :create, :edit, :update]
 
+  get "scanner", to: "scanner#index", as: :scanner
+  post "scanner/check", to: "scanner#check", as: :scanner_check
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

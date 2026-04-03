@@ -1,0 +1,20 @@
+<div class="scanner-container">
+  <h1>Job Posting Scanner</h1>
+  <p>Paste a job posting URL below to check it for red flags before you apply.</p>
+  <p>No account required.</p>
+
+  <% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+  <% end %>
+
+  <%= form_with url: scanner_check_path, method: :post, local: true, data: { turbo: false } do |f| %>
+    <div class="field">
+      <p><%= f.label :url, "Job Posting URL" %></p>
+      <p><%= f.url_field :url, placeholder: "https://company.com/careers/job-title", size: 60 %></p>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Scan This Job" %>
+    </div>
+  <% end %>
+</div>
