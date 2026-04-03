@@ -1,0 +1,36 @@
+<h1>SearchBeacon Scan Results</h1>
+<p>The light in the noise.</p>
+
+<hr>
+
+<p><strong>Scanned URL:</strong> <%= @url %></p>
+<p><strong>Risk Score:</strong> <%= @score %></p>
+
+<% if @verdict == "clean" %>
+  <p style="color: green;">✓ This posting looks clean.</p>
+<% else %>
+  <p style="color: red;">⚠ This posting has red flags. Proceed with caution.</p>
+<% end %>
+
+<% if @flags.any? %>
+  <h2>Flags Found:</h2>
+  <ul>
+    <% @flags.each do |flag| %>
+      <li>
+        <strong>[<%= flag["category"] %>]</strong> — weight: <%= flag["weight"] %>
+        <ul>
+          <% flag["matches"].each do |match| %>
+            <li><%= match %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No specific red flags detected.</p>
+<% end %>
+
+<hr>
+
+<p>Want to find verified jobs with no ghost postings?</p>
+<p><a href="http://localhost:3001">Try SearchBeacon</a> — real jobs, verified employers, no noise.</p>

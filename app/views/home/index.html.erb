@@ -1,12 +1,2 @@
 <h1>SearchBeacon</h1>
 <p>The light in the noise.</p>
-
-<% if user_signed_in? %>
-  <p>Signed in as <%= current_user.email %> (<%= current_user.role %>)</p>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-  <%= link_to "Browse Jobs", jobs_path %>
-  <%= link_to "Scan a Job Posting", scanner_path %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-<% end %>

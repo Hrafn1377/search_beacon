@@ -1,6 +1,10 @@
 <div class="scanner-container">
   <h1>Scan Results</h1>
   <p class="scanned-url">Scanned: <strong><%= @url %></strong></p>
+  
+  <% if @email_sent %>
+    <p class="email-confirmation">✓ Results sent to your email.</p>
+  <% end %>
 
   <% if @result["error"] %>
     <div class="alert"><%= @result["error"] %></div>

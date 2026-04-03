@@ -13,6 +13,11 @@
       <p><%= f.url_field :url, placeholder: "https://company.com/careers/job-title", size: 60 %></p>
     </div>
 
+    <div class="field">
+  <p><%= f.label :email, "Email Results To (optional)" %></p>
+  <p><%= f.email_field :email, placeholder: "your@email.com" %></p>
+</div>
+
     <div class="actions">
       <%= f.submit "Scan This Job" %>
     </div>

@@ -5,6 +5,7 @@ class ScannerController < ApplicationController
 
   def check
     url = params[:url]
+    email = params[:email]
 
     if url.blank?
       flash[:alert] = "Please enter a URL."
@@ -20,6 +21,11 @@ class ScannerController < ApplicationController
     if response.success?
       @result = JSON.parse(response.body)
       @url = url
+
+      if email.present?
+        ScannerMailer.results(email, url, @result).deliver_now
+        @email_sent = true
+      end
     else
       flash[:alert] = "Something went wrong. Please try again."
       redirect_to scanner_path

@@ -70,3 +70,5 @@ gem "devise", "~> 5.0"
 gem "sidekiq", "~> 8.1"
 
 gem "faraday", "~> 2.14"
+
+gem "letter_opener", "~> 1.10", :group => :development

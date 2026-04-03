@@ -24,6 +24,32 @@
   </head>
 
   <body>
+  <nav>
+    <span><%= link_to "SearchBeacon", root_path %></span>
+
+    <span>
+      <%= link_to "Jobs", jobs_path %>
+      <%= link_to "Scan a Job", scanner_path %>
+
+      <% if user_signed_in? %>
+        <%= link_to "Profile", "#" %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
+      <% end %>
+    </span>
+  </nav>
+
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+  <% end %>
+
+  <main>
     <%= yield %>
-  </body>
+  </main>
+</body>
 </html>

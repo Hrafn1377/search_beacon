@@ -1,0 +1,31 @@
+SearchBeacon Scan Results
+The light in the noise.
+
+---
+
+Scanned URL: <%= @url %>
+Risk Score: <%= @score %>
+
+<% if @verdict == "clean" %>
+✓ This posting looks clean.
+<% else %>
+⚠ This posting has red flags. Proceed with caution.
+<% end %>
+
+<% if @flags.any? %>
+Flags Found:
+<% @flags.each do |flag| %>
+  [<%= flag["category"] %>] weight: <%= flag["weight"] %>
+  <% flag["matches"].each do |match| %>
+    - <%= match %>
+  <% end %>
+<% end %>
+<% else %>
+No specific red flags detected.
+<% end %>
+
+---
+
+Want to find verified jobs with no ghost postings?
+Try SearchBeacon at http://localhost:3001
+Real jobs. Verified employers. No noise.
